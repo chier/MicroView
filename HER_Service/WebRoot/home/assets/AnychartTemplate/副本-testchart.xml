@@ -1,0 +1,15 @@
+<anychart>
+  <charts>
+	<chart>
+		<data>
+		  <series name="Sales" type="Area">
+			<point name="January" y="10000" />
+			<point name="February" y="12000" />
+			<point name="March" y="18000" />
+			<point name="April" y="11000" />
+			<point name="May" y="9000" />
+		  </series>
+		</data>
+	</chart>
+  </charts>
+</anychart>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="HER_Service">
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WebContent/WEB-INF/classes" source-path="WebContent/WEB-INF/src"/>
+        <wb-resource deploy-path="/" source-path="/WebRoot"/> 
+        <property name="context-root" value="/HER_Service"/>
+        <property name="java-output-path" value="/HER_Service/build/classes"/>
+    </wb-module>
+</project-modules>

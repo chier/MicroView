@@ -1,0 +1,10 @@
+[
+    {
+        "condition" : "0<=arg['he2']<4.0",
+        "exp" : "math.sin(arg['he2'])+1"
+    },
+    {
+        "condition" : "4.0<=arg['he2']<50.0",
+        "exp" : "math.sin(arg['he2'])+10"
+    }
+]

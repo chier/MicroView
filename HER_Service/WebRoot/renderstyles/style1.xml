@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<render type="Class" geomtype="Fill" field="tzz">
+	<infos>
+		<info value="" maxvalue="0.06" minvalue="0" desc="0-0.06">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0x7DD422</color>
+				<alpha>0.5</alpha>
+			</symbol>
+		</info>
+		<info value="" maxvalue="0.11" minvalue="0.07" desc="0.07-0.11">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0xB5D324</color>
+				<alpha>0.5</alpha>
+			</symbol>
+		</info>
+		<info value="" maxvalue="0.16" minvalue="0.12" desc="0.12-0.16">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0xD1D225</color>
+				<alpha>0.5</alpha>
+			</symbol>
+		</info>
+		<info value="" maxvalue="0.21" minvalue="0.17" desc="0.17-0.21">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0xEE8726</color>
+				<alpha>0.5</alpha>
+			</symbol>
+		</info>
+		<info value="" maxvalue="0.31" minvalue="0.22" desc="0.22-0.31">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0xEE6226</color>
+				<alpha>0.5</alpha>
+			</symbol>
+		</info>
+		<info value="" maxvalue="0.41" minvalue="0.32" desc="0.32-0.41">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0xEE3D26</color>
+				<alpha>0.5</alpha>
+			</symbol>
+		</info>
+		<info value="" maxvalue="0.51" minvalue="0.42" desc="0.42-0.51">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0xFF0066</color>
+				<alpha>0.5</alpha>
+			</symbol>
+		</info>
+		<info value="" maxvalue="1.00" minvalue="0.52" desc="0.52-1.00">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0xCC3300</color>
+				<alpha>0.5</alpha>
+			</symbol>
+		</info>
+	</infos>
+</render>

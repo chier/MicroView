@@ -1,0 +1,36 @@
+<render rendertype="Unique" geomtype="Marker | Line | Fill" field="">
+	<infos>
+		<info value="" maxvalue="" minvalue="" desc="">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+			</symbol>
+		</info>
+		<info value="" maxvalue="" minvalue="" desc="">
+			<symbol type="Marker">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<size>3</size>
+			</symbol>
+			<symbol type="Line">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+				<width>3</width>
+			</symbol>
+			<symbol type="Fill">
+				<color>0x22C52C</color>
+				<alpha>1</alpha>
+			</symbol>
+		</info>
+	</infos>
+</render>

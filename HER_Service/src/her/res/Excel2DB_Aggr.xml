@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fieldmaps>
+	<table name="client_expo_policy_aggr_test"/>
+	<map from="zone" to="zone" type="String"></map>
+	<map from="addr" to="addr" type="String"></map>
+	<map from="code" to="code" type="String"></map>
+	<map from="premium" to="premium" type="Number"></map>
+</fieldmaps>

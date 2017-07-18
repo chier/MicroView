@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anychart>
+	<templates path="templates.xml" />
+	<charts>
+		<chart name="Inforce Chart" template="Templates">
+			<chart_settings>
+		        <title>
+		          <text><![CDATA[Inforce Data Stats]]></text>
+		        </title>
+		        <axes>
+		          <x_axis enabled="true">
+		          		<title>
+							<font color="Red" />
+							<text><![CDATA[近三年日期]]></text>
+						</title>
+		            	<major_tickmark color="Red" />
+		            	<zero_line thickness="2" type="Gradient" caps="None" opacity="1">
+				              <gradient>
+					                <key color="Black" position="0.2" />
+					                <key color="Red" position="0.5" />
+					                <key color="Black" position="0.8" />
+				              </gradient>
+		            	</zero_line>
+		          </x_axis>
+		          <y_axis>
+		          		<title>
+							<font color="Red" />
+							<text><![CDATA[总额]]></text>
+						</title>
+			            <major_tickmark color="Red" />
+			            <zero_line thickness="2" type="Gradient" caps="None" opacity="1">
+			              <gradient>
+			                <key color="Black" position="0.2" />
+			                <key color="Red" position="0.5" />
+			                <key color="Black" position="0.8" />
+			              </gradient>
+			            </zero_line>
+		          	</y_axis>
+		          <extra>
+		          		<y_axis name="y2" enabled="true">
+							<title rotation="180">
+								<text><![CDATA[有效保单个数]]></text>
+							</title>
+				            <major_tickmark color="Red" />
+				            <zero_line thickness="2" type="Gradient" caps="None" opacity="1">
+				              <gradient>
+				                <key color="Black" position="0.2" />
+				                <key color="Red" position="0.5" />
+				                <key color="Black" position="0.8" />
+				              </gradient>
+				            </zero_line>
+						</y_axis>	
+					</extra>	
+		        </axes>
+      		</chart_settings>
+			<data>
+			</data>
+		</chart>
+	</charts>
+	<data_sets>
+	</data_sets>
+</anychart>

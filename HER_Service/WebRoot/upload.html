@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/fonts/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fileinput.min.css" rel="stylesheet">
+    <link href="css/bootstrap-table.min.css" rel="stylesheet">
+    <link href="css/jstree-style.css" rel="stylesheet">
+    <link href="css/footer-default.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/leaflet.css"/>
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/leaflet.ie.css"/><![endif]-->
+
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar"
+                    aria-controls="bs-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../" class="navbar-brand">HERisk</a>
+        </div>
+        <nav id="bs-navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="../getting-started/">E 数据上传</a>
+                </li>
+                <li>
+                    <a href="../css/">R 数据上传</a>
+                </li>
+                <li>
+                    <a href="../components/">H 数据上传</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://www.herisk.com"
+                       target="_blank">在线主页</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-11" role="main">
+            <div class="row" id="uploadsection">
+                <div class="col-sm-12">
+                    <div class="page-header bs-header">
+                        <h1 class="text-warning">
+                            <span class="glyphicon glyphicon-upload"></span> E 数据上传(Exposure)
+                        </h1>
+                    </div>
+                    <div id="alertdiv"></div>
+                    <div class="row" style="background-color: aliceblue">
+                        <div class="col-sm-6">
+                            <!--保单数据字典表 Start-->
+                            <div class="bs-box e-record-type">
+                                <input id="input-e-record-type" type="file" class="" class="file"
+                                       data-preview-file-type="text">
+                            </div>
+                            <!--保单数据字典表 End-->
+                        </div>
+                        <div class="col-sm-6">
+                            <!--保单数据表 Start-->
+                            <div class="bs-box e-data">
+                                <input id="input-e-data" type="file" class="" class="file"
+                                       data-preview-file-type="text">
+                            </div>
+                            <!--保单数据表 End-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="dataviewsection">
+                <div class="col-sm-12">
+                    <div class="page-header bs-header">
+                        <h1 class="text-warning">
+                            <span class="glyphicon glyphicon-list"></span> E 库表目录(Exposure)
+                        </h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="segment-header bs-header">
+                                <h4 class="text-warning">目录</h4>
+                            </div>
+                            <div class="bs-box e-record-type-tree" id="fields-catalog">
+                                <a herf="#" class="toolbtn" id="e-rt-refresh"><i
+                                        class="icon-refresh"></i></a>
+
+                                <div id="record_type_tree_div"></div>
+                            </div>
+                            <div class="bs-box e-data-tree" id="data-catalog">
+                                <a herf="#" class="toolbtn" id="e-data-refresh"><i
+                                        class="icon-refresh"></i></a>
+
+                                <div id="data_tree_div"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="segment-header bs-header">
+                                <h4 class="text-warning">浏览</h4>
+                            </div>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#datapanel"
+                                       aria-controls="home" role="tab"
+                                       data-toggle="tab">数据</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#mappanel"
+                                       aria-controls="profile" role="tab" data-toggle="tab">地图</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#descpanel"
+                                       aria-controls="profile" role="tab" data-toggle="tab">描述</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="datapanel">
+                                    <!--<div id="toolbar">-->
+                                    <!--<button id="remove" class="btn btn-danger" disabled>-->
+                                    <!--<i class="glyphicon glyphicon-remove"></i>删除数据-->
+                                    <!--</button>-->
+                                    <!--</div>-->
+                                    <table id="table"></table>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="mappanel">
+                                    <div id="map"></div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="descpanel">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-1" role="complementary">
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix-top">
+                <ul class="nav bs-docs-sidenav">
+                    <li>
+                        <a href="#uploadsection">数据上传</a>
+                    </li>
+                    <li>
+                        <a href="#dataviewsection">库表目录</a>
+                        <ul class="nav">
+                            <li><a href="#fields-catalog">字段结构目录</a></li>
+                            <li><a href="#data-catalog">数据目录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a class="back-to-top" href="#top">返回顶部</a>
+                <a class="move-to-bottom" href="#footer">移到底部</a>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="bs-docs-footer footer" id="footer">
+    <div class="container">
+        <p>HER 平台数据上传系统 by <a href="#" target="_blank">@zhangbo</a> .</p>
+        <ul class="bs-docs-footer-links text-muted">
+            <li>当前版本： v0.0.1</li>
+            <li>·</li>
+            <li><a href="https://github.com/twbs/bootstrap">项目仓库</a></li>
+            <li>·</li>
+            <li><a href="../getting-started/#examples">实例精选</a></li>
+            <li>·</li>
+            <li><a href="http://v2.bootcss.com/">帮助文档</a></li>
+            <li>·</li>
+            <li><a href="../about/">关于</a></li>
+            <li>·</li>
+            <li><a href="http://blog.getbootstrap.com">官方博客</a></li>
+            <li>·</li>
+            <li><a href="https://github.com/twbs/bootstrap/issues">Issues</a></li>
+            <li>·</li>
+            <li><a href="https://github.com/twbs/bootstrap/releases">历史版本</a></li>
+        </ul>
+    </div>
+</div>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/json2.js"></script>
+<!-- <script src="js/jquery.csv.min.js"></script> -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.min.js"></script>
+<script src="js/bootstrap-table-export.min.js"></script>
+<script src="js/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/tableExport.js"></script>
+<!-- <script src="js/stickUp.min.js"></script> -->
+<script src="js/jstree.min.js"></script>
+<script src="js/layer/layer.js"></script>
+<script src="js/sortable.min.js"></script>
+<script src="js/fileinput.min.js"></script>
+<script src="js/zh.js"></script>
+<script>
+    window.MapView = {show: false, url: ''};
+    window.DataView = {show: true, url: ''};
+    window.DescView = {show: false};
+
+    var $win = $(window), $body = $(document.body);
+    $body.scrollspy({target: ".bs-docs-sidebar"});
+    $win.on("load", function () {
+        $body.scrollspy("refresh");
+    });
+    var sb = $(".bs-docs-sidebar");
+    sb.affix({
+        offset: {
+            top: function () {
+                var c = sb.offset().top, d = parseInt(sb.children(0).css("margin-top"), 10), e = $(".bs-docs-nav").height();
+                return this.top = c - e - d
+            },
+            bottom: function () {
+                return this.bottom = $(".footer").outerHeight(!0)
+            }
+        }
+    });
+
+    $("#input-e-record-type").fileinput({
+        uploadUrl: "servlet/upload?upload_type=e_record",
+        language: 'zh',
+        autoReplace: true,
+        maxFileCount: 1,
+        initialPreviewAsData: true,
+        initialPreviewFileType: 'csv',
+        allowedFileExtensions: ["csv"],
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    }).on('fileuploaded', function (event, data, previewId, index) {
+        var form = data.form, files = data.files, extra = data.extra, response = data.response, reader = data.reader;
+        //     	console.log('File uploaded triggered');
+        //     	console.log(form);
+        //     	console.log(files);
+        //     	console.log(extra);
+        //     	console.log(response);
+        //     	console.log(reader);
+        if (response.status == "1") {
+            var alertstr = '<div class="alert alert-success alert-dismissible fade in" role="alert">'
+                    + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                    + '<span aria-hidden="true">&times;</span>'
+                    + '</button><strong>提示！</strong> 数据上传成功。'
+                    + '</div>';
+            $('#alertdiv').append(alertstr);
+            $('#e-rt-refresh').data("res", response);
+            recordTypeRefresh();
+        } else {
+            var alertstr = '<div class="alert alert-danger alert-dismissible fade in" role="alert">'
+                    + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                    + '<span aria-hidden="true">&times;</span>'
+                    + '</button><strong>提示！</strong> 数据写入数据库失败。' + response.msg
+                    + '</div>';
+            $('#alertdiv').append(alertstr);
+        }
+    });
+    $("#input-e-data").fileinput({
+        uploadUrl: "servlet/upload?upload_type=e_data",
+        language: 'zh',
+        autoReplace: true,
+        maxFileCount: 1,
+        initialPreviewAsData: true,
+        initialPreviewFileType: 'csv',
+        allowedFileExtensions: ["csv"],
+        slugCallback: function (filename) {
+            return filename.replace('(', '_').replace(']', '_');
+        }
+    }).on('fileuploaded', function (event, data, previewId, index) {
+        var form = data.form, files = data.files, extra = data.extra, response = data.response, reader = data.reader;
+        //     	console.log('File uploaded triggered');
+        //     	console.log(form);
+        //     	console.log(files);
+        //     	console.log(extra);
+        //     	console.log(response);
+        //     	console.log(reader);
+        if (response.status == "1") {
+            var alertstr = '<div class="alert alert-success alert-dismissible fade in" role="alert">'
+                    + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                    + '<span aria-hidden="true">&times;</span>'
+                    + '</button><strong>提示！</strong> 成功上传 ' + response.data_count + ' 条数据。'
+                    + '</div>';
+            $('#alertdiv').append(alertstr);
+            $('#e-rt-refresh').data("res", response);
+            dataRefresh();
+        } else {
+            var alertstr = '<div class="alert alert-danger alert-dismissible fade in" role="alert">'
+                    + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+                    + '<span aria-hidden="true">&times;</span>'
+                    + '</button><strong>提示！</strong> 数据写入数据库失败。' + response.msg
+                    + '</div>';
+            $('#alertdiv').append(alertstr);
+        }
+    });
+
+    $('#e-rt-refresh').data("res", {
+        url_type: "GET",
+        url: "servlet/client_query?action=get_e_it_catalog"
+    }).on("click", function () {
+        recordTypeRefresh();
+    });
+    function recordTypeRefresh() {
+        var res = $('#e-rt-refresh').data("res");
+        $.ajax({
+            type: res.url_type,
+            url: res.url,
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data.status == "SUCCESS") {
+                    var d = data.result.data;
+                    var treed = [];
+                    for (var i = 0; i < d.length; i++) {
+                        treed.push({
+                            "text": d[i].rtid,
+                            "id": d[i].rtid
+                        });
+                    }
+                    
+                    //record_type, record_type_desc, field_name, field_title, field_type, field_unit, field_discription, field
+                    $("#record_type_tree_div").jstree("destroy");
+                    $('#record_type_tree_div').jstree({
+                        'core': {
+                            'multiple': false,
+                            'data': [{
+                                'text': '100',
+                                'id': '100',
+                                'children': treed
+                            }]
+                        },
+                        'plugins': ["contextmenu"],
+                        'contextmenu': {
+                            "items": function ($node) {
+                                return {
+                                    "Delete": {
+                                        "label": "删除",
+                                        "icon": "icon-remove",
+                                        "action": function (obj) {
+                                            console.log(obj);
+                                            var inst = jQuery.jstree.reference(obj.reference);
+                                            var clickedNode = inst.get_node(obj.reference);
+                                            if (clickedNode.id == "100") {
+                                                layer.alert('该节点不可以删除！', {
+                                                    icon: 5
+                                                });
+                                            }
+                                            else {
+                                                layer.confirm('您是否要删除该类型字段结构？ 此操作会同时删掉该字段结构类型的所有表和数据！', {
+                                                    btn: ['确定', '取消'], //按钮
+                                                    icon: 0
+                                                }, function () {
+                                                    //确定操作
+
+                                                }, function () {
+                                                    //取消操作
+                                                });
+                                            }
+                                        }
+                                    }
+                                };
+                            }
+                        }
+                    }).on("changed.jstree", function (e, data) {
+                        window.DataView.url = 'servlet/client_query?action=get_e_it_data&rtid=' + data.node.id;
+                        $.ajax({
+                            type: "POST",
+                            url: 'servlet/client_query?action=get_e_it_header&rtid=' + data.node.id,
+                            dataType: "json",
+                            async: true,
+                            success: function (data) {
+                                if (data.status == "SUCCESS") {
+                                    var header = [];
+                                    for (var i = 0; i < data.result.data.length; i++) {
+                                        header.push({
+                                            field: data.result.data[i].columnName,
+                                            title: data.result.data[i].columnName,
+                                            sortable: true
+                                        });
+                                    }
+                                    $('#table').bootstrapTable('refreshOptions', {
+                                        columns: header
+                                    });
+                                }
+                            },
+                            error: function (XMLHttpRequest, textStatus,
+                                             errorThrown) {
+                                console.log(XMLHttpRequest.status);
+                                console.log(XMLHttpRequest.readyState);
+                                console.log(textStatus);
+                            }
+                        });
+                    });
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus,
+                             errorThrown) {
+                console.log(XMLHttpRequest.status);
+                console.log(XMLHttpRequest.readyState);
+                console.log(textStatus);
+            }
+        });
+    }
+    $('#e-data-refresh').data("res", {
+        url_type: "GET",
+        url: "servlet/client_query?action=get_e_data_catalog"
+    }).on("click", function () {
+        dataRefresh();
+    });
+    function dataRefresh() {
+        var res = $('#e-data-refresh').data("res");
+        $.ajax({
+            type: res.url_type,
+            url: res.url,
+            dataType: "json",
+            async: true,
+            success: function (data) {
+                if (data.status == "SUCCESS") {
+                    var d = data.result.data, treed = [], rtStr = "", treeObj = null;
+                    for (var i = 0; i < d.length; i++) {
+                        if (rtStr.indexOf(d[i].rtid + ",") != -1) {
+                            treeObj.children.push({
+                                'text': d[i].import_time,
+                                'rtid': d[i].rtid,
+                                'dt': d[i].import_table,
+                                'import_id': d[i].import_id
+                            });
+                        }
+                        else {
+                            rtStr += d[i].rtid + ",";
+                            if (treeObj != null) {
+                                treed.push(treeObj);
+                            }
+                            treeObj = {
+                                'text': d[i].rtid,
+                                'rtid': d[i].rtid,
+                                'dt': d[i].import_table,
+                                'children': [
+                                    {
+                                        'text': d[i].import_time,
+                                        'rtid': d[i].rtid,
+                                        'dt': d[i].import_table,
+                                        'import_id': d[i].import_id
+                                    }
+                                ]
+                            };
+                        }
+                    }
+                    if (treeObj != null) {
+                        treed.push(treeObj);
+                    }
+                    //record_type, record_type_desc, field_name, field_title, field_type, field_unit, field_discription, field
+                    $("#data_tree_div").jstree("destroy");
+                    $('#data_tree_div').jstree({
+                        'core': {
+                            'multiple': false,
+                            'data': treed
+                        },
+                        'plugins': ["contextmenu"],
+                        'contextmenu': {
+                            "items": function ($node) {
+                                return {
+                                    "Delete": {
+                                        "label": "删除",
+                                        "icon": "icon-remove",
+                                        "action": function (obj) {
+                                            console.log(obj);
+                                            var inst = jQuery.jstree.reference(obj.reference);
+                                            var clickedNode = inst.get_node(obj.reference);
+                                            if (clickedNode.id == "100") {
+                                                layer.alert('该节点不可以删除！', {
+                                                    icon: 5
+                                                });
+                                            }
+                                            else {
+                                                layer.confirm('您是否要删除该类型字段结构？ 此操作会同时删掉该字段结构类型的所有表和数据！', {
+                                                    btn: ['确定', '取消'], //按钮
+                                                    icon: 0
+                                                }, function () {
+                                                    //确定操作
+
+                                                }, function () {
+                                                    //取消操作
+                                                });
+                                            }
+                                        }
+                                    }
+                                };
+                            }
+                        }
+                    }).on("changed.jstree", function (e, data) {
+                        if (data.node.original && data.node.original.hasOwnProperty('dt')) {
+                            window.DataView.url = 'servlet/client_query?action=get_e_data&dt=' + data.node.original.dt + (data.node.original.hasOwnProperty('import_id') ? ('&importid=' + data.node.original.import_id) : '');
+                            window.MapView.url = 'servlet/client_query?action=get_e_data_latlng&dt=' + data.node.original.dt + (data.node.original.hasOwnProperty('import_id') ? ('&importid=' + data.node.original.import_id) : '');
+                            window.DescView.url = 'servlet/client_query?action=get_e_data_property&rtid=' + data.node.original.rtid;
+                            mapDataRequest();
+                            descDataRequest();
+                            $.ajax({
+                                type: "POST",
+                                url: 'servlet/client_query?action=get_e_data_header&rtid=' + data.node.original.rtid,
+                                dataType: "json",
+                                async: true,
+                                success: function (data) {
+                                    if (data.status == "SUCCESS") {
+                                        var header = [];
+                                        var d = data.result.data;
+                                        for (var i = 0; i < d.length; i++) {
+                                            header.push({
+                                                field: d[i].field,
+                                                title: d[i].field_title,
+                                                sortable: true
+                                            });
+                                        }
+                                        $('#table').bootstrapTable('refreshOptions', {
+                                            columns: header
+                                        });
+                                    }
+                                },
+                                error: function (XMLHttpRequest, textStatus,
+                                                 errorThrown) {
+                                    console.log(XMLHttpRequest.status);
+                                    console.log(XMLHttpRequest.readyState);
+                                    console.log(textStatus);
+                                }
+                            });
+                        }
+
+                    });
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus,
+                             errorThrown) {
+                console.log(XMLHttpRequest.status);
+                console.log(XMLHttpRequest.readyState);
+                console.log(textStatus);
+            }
+        });
+    }
+    $("#input-e-data").fileinput({
+        uploadUrl: "servlet/upload",
+        language: 'zh',
+        autoReplace: true,
+        maxFileCount: 1,
+        allowedFileExtensions: ["csv"]
+    });
+
+    //     $('#data_tree_div').jstree({
+    //         'core': {
+    //             'data': ['Simple root node', {
+    //                 'text': 'Root node 2',
+    //                 'state': {
+    //                     'opened': true,
+    //                     'selected': true
+    //                 },
+    //                 'children': [{
+    //                     'text': 'Child 1'
+    //                 }, 'Child 2']
+    //             }]
+    //         },
+    //         plugins : ["contextmenu"],
+    // //        "contextmenu": {
+    // //            "items": {
+    // //                "create": null,//this.create(obj);
+    // //                "rename": null,//this.rename(obj);
+    // //                "remove": null,//this.remove(obj);
+    // //                "ccp": null,
+    // //                "add": null,//this.create(obj);
+    // //                "delete": {
+    // //                    "label": "删除",
+    // //                    "icon": "icon-remove",
+    // //                    "action": function (obj) {
+    // //                        var inst = jQuery.jstree.reference(obj.reference);
+    // //                        var clickedNode = inst.get_node(obj.reference);
+    // //                        alert("delete operation--clickedNode's id is:" + clickedNode.id);
+    // //                        console.log(obj);
+    // //                        this.remove(obj);
+    // //                    }
+    // //                }
+    // //            }
+    // //        }
+    //         "contextmenu": {
+    //             "items": function ($node) {
+    //                 return {
+    // //                    "Create": {
+    // //                        "label": "Create a new employee",
+    // //                        "action": function (obj) {
+    // //                            this.create(obj);
+    // //                        }
+    // //                    },
+    // //                    "Rename": {
+    // //                        "label": "Rename an employee",
+    // //                        "action": function (obj) {
+    // //                            this.rename(obj);
+    // //                        }
+    // //                    },
+    //                     "Delete": {
+    //                         "label": "删除",
+    //                         "icon": "icon-remove",
+    //                         "action": function (obj) {
+    //                             console.log(obj);
+    //                         }
+    //                     }
+    //                 };
+    //             }
+    //         }
+
+    //     });
+    $('#table').bootstrapTable({
+//         url: '', //请求后台的URL（*）
+        method: 'get', //请求方式（*）
+        ajax: "dataRequest",
+//        toolbar : '#toolbar', //工具按钮用哪个容器
+        striped: true, //是否显示行间隔色
+        cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+        pagination: true, //是否显示分页（*）
+        sortable: true, //是否启用排序
+        sortOrder: "asc", //排序方式
+        // 			queryParams : oTableInit.queryParams,//传递参数（*）
+        sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
+        pageNumber: 1, //初始化加载第一页，默认第一页
+        pageSize: 10, //每页的记录行数（*）
+        pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+        search: false, //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+        strictSearch: false,
+        showColumns: true, //是否显示所有的列
+        showRefresh: true, //是否显示刷新按钮
+        showExport: true,
+        exportDataType: "",
+        minimumCountColumns: 2, //最少允许的列数
+        clickToSelect: true, //是否启用点击选中行
+        // 			height : 500, //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+        // 			uniqueId : "ID", //每一行的唯一标识，一般为主键列
+        showToggle: true, //是否显示详细视图和列表视图的切换按钮
+        cardView: false, //是否显示详细视图
+        detailView: false
+        //是否显示父子表
+        // 			columns : [ {
+        // 				checkbox : false
+        // 			}, {
+        // 				field : 'Name',
+        // 				title : '部门名称',
+        // 				align: "center",
+        // 				valign: "middle",
+        // 				sortable : true,
+        // 				formatter: function (value, row, index)
+        // 				{
+        // 					//通过formatter可以自定义列显示的内容 //value：当前field的值，即id //row：当前行的数据
+        // 					var a = '修改';
+        // 					return a;
+        // 				}
+        // 			}, {
+        // 				field : 'ParentName',
+        // 				title : '上级部门'
+        // 			}, {
+        // 				field : 'Level',
+        // 				title : '部门级别'
+        // 			}, {
+        // 				field : 'Desc',
+        // 				title : '描述'
+        // 			}, ]
+    });
+
+    // your custom ajax request here
+    function dataRequest(params) {
+        if (window.DataView.url == "") {
+            return;
+        }
+        // data you need
+        console.log(params.data);
+        $.ajax({
+            type: "POST",
+            url: window.DataView.url,
+            dataType: "json",
+            async: true,
+            data: params.data,
+            success: function (data) {
+                if (data.status == "SUCCESS") {
+                    params.success({
+                        total: data.count,
+                        rows: data.result.data
+                    });
+                }
+            },
+            error: function (XMLHttpRequest, textStatus,
+                             errorThrown) {
+                console.log(XMLHttpRequest.status);
+                console.log(XMLHttpRequest.readyState);
+                console.log(textStatus);
+            }
+        });
+//        setTimeout(function () {
+//            params.success({
+//                total: 100,
+//                rows: [{
+//                    "id": 0,
+//                    "name": "Item 0",
+//                    "price": "$0"
+//                }, {
+//                    "id": 2,
+//                    "name": "Item 2",
+//                    "price": "$10"
+//                }]
+//            });
+//        }, 1000);
+    }
+
+    function mapDataRequest() {
+        if (window.MapView.show && window.MapView.url != '') {
+            $.ajax({
+                type: "POST",
+                url: window.MapView.url,
+                dataType: "json",
+                async: true,
+                success: function (data) {
+                    if (data.status == "SUCCESS") {
+//                        var geojson = data.result.data[0].json;
+//                        console.log(geojson);
+
+//                        var geojsonFeature = {
+//                            "type": "Feature",
+//                            "properties": {
+//                                "name": "Coors Field",
+//                                "amenity": "Baseball Stadium",
+//                                "popupContent": "This is where the Rockies play!"
+//                            },
+//                            "geometry": {
+//                                "type": "Point",
+//                                "coordinates": [-104.99404, 39.75621]
+//                            }
+//                        };
+
+                        var d = [], back = data.result.data;
+                        $.each(back, function (i, item) {
+                            console.log(item.latlng)
+                            if (item.latlng != null && item.latlng != '') {
+                                d.push(item.latlng.split(' '));
+                            }
+                        });
+                        window.MapView.datalayer.setRadius(d.length < 1000 ? 5 : (d.length < 10000 ? 2 : 1));
+                        window.MapView.datalayer.setData(d);
+//                        window.MapView.map.eachLayer(function (layer) {
+//                            window.MapView.map.removeLayer(layer);
+//                        });
+//                        window.MapView.map.addLayer(layer);
+//                        window.MapView.jsonLayer.addData(JSON.parse(geojson)).addTo(window.Map.map);
+                    }
+                    else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus,
+                                 errorThrown) {
+                    console.log(XMLHttpRequest.status);
+                    console.log(XMLHttpRequest.readyState);
+                    console.log(textStatus);
+                }
+            });
+        }
+    }
+
+    function descDataRequest() {
+        if (window.DescView.show && window.DescView.url != '') {
+            $.ajax({
+                type: "POST",
+                url: window.DescView.url,
+                dataType: "json",
+                async: true,
+                success: function (data) {
+                    if (data.status == "SUCCESS") {
+                        var $descpanel = $('#descpanel'), back = data.result.data;
+                        var desc = '<div class="bs-panel">' +
+                                '<ul class="list-group">' +
+                                '<li class="list-group-item"><span class="badge">per_agg</span>'+back[0].per_agg+'</li>' +
+                                '<li class="list-group-item"><span class="badge">property1</span>'+back[0].property1+'</li>' +
+                                '<li class="list-group-item"><span class="badge">property2</span>'+back[0].property2+'</li>' +
+                                '<li class="list-group-item"><span class="badge">property3</span>'+back[0].property3+'</li>' +
+                                '<li class="list-group-item"><span class="badge">property4</span>'+back[0].property4+'</li>' +
+                                '<li class="list-group-item"><span class="badge">property5</span>'+back[0].property5+'</li>' +
+                                '<li class="list-group-item"><span class="badge">property6</span>'+back[0].property6+'</li>' +
+                                '<li class="list-group-item"><span class="badge">property7</span>'+back[0].property7+'</li>' +
+                                '<li class="list-group-item"><span class="badge">property8</span>'+back[0].property8+'</li>' +
+                                '<li class="list-group-item"><span class="badge">property9</span>'+back[0].property9+'</li>' +
+                                '</ul>' +
+                                '</div>';
+                        $descpanel.empty().append(desc);
+                    }
+                    else {
+                        alert(data.msg);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus,
+                                 errorThrown) {
+                    console.log(XMLHttpRequest.status);
+                    console.log(XMLHttpRequest.readyState);
+                    console.log(textStatus);
+                }
+            });
+        }
+    }
+
+    //    L_PREFER_CANVAS = true; // experimental
+</script>
+
+
+<script src="js/leaflet/maskcanvas/leaflet-src.js"></script>
+<script src="js/leaflet/leaflet-providers.js"></script>
+<!--<script src="js/leaflet/route.js"></script>-->
+<script src="js/leaflet/maskcanvas/QuadTree.js"></script>
+<script src="js/leaflet/maskcanvas/L.GridLayer.MaskCanvas.js"></script>
+<script src="js/bmap/BaiduMap_cityCenter.js"></script>
+<script>
+    //    function loadScript() {
+    //        var script = document.createElement("script");
+    //        script.src = "http://api.map.baidu.com/api?v=2.0&ak=D723b2adadcc1381a3556cef5e989549&callback=initialize";//此为v2.0版本的引用方式
+    //        // http://api.map.baidu.com/api?v=1.4&ak=您的密钥&callback=initialize"; //此为v1.4版本及以前版本的引用方式
+    //        document.body.appendChild(script);
+    //    }
+    //    window.onload = loadScript;
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        e.target // newly activated tab
+        window.MapView.show = false;
+        window.DataView.show = false;
+        window.DescView.show = false;
+        if (e.target.getAttribute("href") === '#datapanel') {
+            window.DataView.show = true;
+        }
+        if (e.target.getAttribute("href") === '#mappanel') {
+            if ($('#mappanel').height() === 0) {
+                initMap();
+            }
+            window.MapView.show = true;
+            mapDataRequest();
+        }
+        if (e.target.getAttribute("href") === '#descpanel') {
+            window.DescView.show = true;
+            descDataRequest();
+        }
+    });
+    var initMap = function () {
+        $('#mappanel').height($('.tab-content').width() * 748 / 654);
+
+        // 创建Map实例
+        var map = L.map('map', {
+            center: [33.87042, 104.76563],
+            zoom: 4,
+            zoomControl: true,
+            attributionControl: false,
+            layers: [
+                L.tileLayer.provider('Esri.WorldStreetMap')
+            ]
+        }).on('click', function (e) {
+//            alert(e.latlng);
+        });
+        var baseLayers = {
+            EsriStreet: L.tileLayer.provider('Esri.WorldStreetMap'),
+            EsriImagery: L.tileLayer.provider('Esri.WorldImagery'),
+            MapBox: L.tileLayer.provider('MapBox'),
+            CartoDB: L.tileLayer.provider('CartoDB.Positron'),
+            BasemapAT: L.tileLayer.provider('BasemapAT.basemap'),
+            OpenStreetMap: L.tileLayer.provider('OpenStreetMap.Mapnik')
+        };
+        L.control.layers(baseLayers).addTo(map);
+        L.control.scale().addTo(map);
+        window.MapView.map = map;
+        window.MapView.datalayer = new L.GridLayer.MaskCanvas({
+            radius: 5,  // radius in pixels or in meters (see useAbsoluteRadius)
+            useAbsoluteRadius: false,  // true: r in meters, false: r in pixels
+            color: 'rgba(55, 55, 250, 0.7)',  // the color of the layer
+            opacity: 0.5,  // opacity of the not covered area
+            noMask: true,  // true results in normal (filled) circled, instead masked circles
+            lineColor: '#fff'   // color of the circle outline if noMask is true
+
+        });
+        window.MapView.map.addLayer(window.MapView.datalayer);
+
+//        var geojsonMarkerOptions = {
+//            radius: 2,
+//            fillColor: "#ff7800",
+//            color: "#000",
+//            weight: 1,
+//            opacity: 1,
+//            fillOpacity: 0.7
+//        };
+//        window.Map.jsonLayer = L.geoJson(null, {
+//            pointToLayer: function (feature, latlng) {
+//                return L.circleMarker(latlng, geojsonMarkerOptions);
+//            },
+//            onEachFeature: function(feature, layer) {
+//                // does this feature have a property named popupContent?
+//                if (feature.properties && feature.properties.popupContent) {
+//                    layer.bindPopup(feature.properties.popupContent);
+//                }
+//            }
+//        }).addTo(map);
+
+        //---------------Demo data--------------
+//        var data = []; // 取城市的点来做示例展示的点数据
+//        data = data.concat(getCityCenter(cityData.municipalities));
+//        data = data.concat(getCityCenter(cityData.provinces));
+//        data = data.concat(getCityCenter(cityData.other));
+//        for (var i = 0; i < cityData.provinces.length; i++) {
+//            var citys = cityData.provinces[i].cities;
+//            data = data.concat(getCityCenter(citys));
+//        }
+//        console.log(data.length);
+//        function getCityCenter(citys) {
+//            var data = [];
+//            for (var i = 0; i < citys.length; i++) {
+//                var city = citys[i];
+//                var center = city.g.split('|')[0];
+//                center = center.split(',');
+//                for (var j = 0; j < 100; j++) {
+//                    data.push([parseFloat(center[1]) + Math.random() * 10 - 5,parseFloat(center[0]) + Math.random() * 10 - 5]);
+////                    data.push({
+////                        lng: parseFloat(center[0]) + Math.random() * 10 - 5,
+////                        lat: parseFloat(center[1]) + Math.random() * 10 - 5,
+////                        count: Math.random() * 10
+////                    });
+//                }
+//            }
+//            return data;
+//        }
+        //---------------Demo data end--------------
+
+//        var group = new L.LayerGroup();
+//        for (var i = 0; i < data.length; i++) {
+//            var circleLocation = new L.LatLng(data[i][0], data[i][1]);
+//            var circleMarker = new L.CircleMarker(circleLocation, {fillColor: 'blue', fillOpacity: 0.7, stroke: false, radius: 1});
+//            circleMarker.bindPopup('I am a circle marker').addTo(map);
+//            group.addLayer(circleMarker);
+//        }
+//        map.addLayer(group);
+//        var layer = new L.GridLayer.MaskCanvas({
+//            radius: 1,  // radius in pixels or in meters (see useAbsoluteRadius)
+//            useAbsoluteRadius: false,  // true: r in meters, false: r in pixels
+//            color: '#000',  // the color of the layer
+//            opacity: 0.5,  // opacity of the not covered area
+//            noMask: true,  // true results in normal (filled) circled, instead masked circles
+//            lineColor: '#000'   // color of the circle outline if noMask is true
+//
+//        });
+//        layer.setData(data);
+//        map.addLayer(layer);
+
+//        map.setView([33.87042, 104.76563], 5);
+
+//        var group = new L.LayerGroup();
+
+//        map.fitBounds(new L.LatLngBounds(latlngs));
+    };
+
+</script>
+</body>
+</html>

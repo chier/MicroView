@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+html, body, #map {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=2.0&ak=D723b2adadcc1381a3556cef5e989549"></script>
+<script src="js/bmap/Mapv.min.js"></script>
+<script src="js/bmap/BaiduMap_cityCenter.js"></script>
+<script>
+    //    function loadScript() {
+    //        var script = document.createElement("script");
+    //        script.src = "http://api.map.baidu.com/api?v=2.0&ak=D723b2adadcc1381a3556cef5e989549&callback=initialize";//此为v2.0版本的引用方式
+    //        // http://api.map.baidu.com/api?v=1.4&ak=您的密钥&callback=initialize"; //此为v1.4版本及以前版本的引用方式
+    //        document.body.appendChild(script);
+    //    }
+    //    window.onload = loadScript;
+
+    var initMap = function () {
+        $('#mappanel').height($('.tab-content').width() * 748 / 654);
+        // 创建Map实例
+        var bmap = new BMap.Map('map', {
+            enableMapClick: false,
+            minZoom: 4
+            //vectorMapLevel: 3
+        });
+
+        bmap.enableScrollWheelZoom(); // 启用滚轮放大缩小
+        //bmap.getContainer().style.background = '#081734';
+        //    bmap.setMapStyle({
+        //        styleJson: [{
+        //            featureType: 'water',
+        //            elementType: 'all',
+        //            stylers: {
+        //                color: '#044161'
+        //            }
+        //        }, {
+        //            featureType: 'land',
+        //            elementType: 'all',
+        //            stylers: {
+        //                color: '#091934'
+        //            }
+        //        }, {
+        //            featureType: 'boundary',
+        //            elementType: 'geometry',
+        //            stylers: {
+        //                color: '#064f85'
+        //            }
+        //        }, {
+        //            featureType: 'railway',
+        //            elementType: 'all',
+        //            stylers: {
+        //                visibility: 'off'
+        //            }
+        //        }, {
+        //            featureType: 'highway',
+        //            elementType: 'geometry',
+        //            stylers: {
+        //                color: '#004981'
+        //            }
+        //        }, {
+        //            featureType: 'highway',
+        //            elementType: 'geometry.fill',
+        //            stylers: {
+        //                color: '#005b96',
+        //                lightness: 1
+        //            }
+        //        }, {
+        //            featureType: 'highway',
+        //            elementType: 'labels',
+        //            stylers: {
+        //                visibility: 'on'
+        //            }
+        //        }, {
+        //            featureType: 'arterial',
+        //            elementType: 'geometry',
+        //            stylers: {
+        //                color: '#004981',
+        //                lightness: -39
+        //            }
+        //        }, {
+        //            featureType: 'arterial',
+        //            elementType: 'geometry.fill',
+        //            stylers: {
+        //                color: '#00508b'
+        //            }
+        //        }, {
+        //            featureType: 'poi',
+        //            elementType: 'all',
+        //            stylers: {
+        //                visibility: 'off'
+        //            }
+        //        }, {
+        //            featureType: 'green',
+        //            elementType: 'all',
+        //            stylers: {
+        //                color: '#056197',
+        //                visibility: 'off'
+        //            }
+        //        }, {
+        //            featureType: 'subway',
+        //            elementType: 'all',
+        //            stylers: {
+        //                visibility: 'off'
+        //            }
+        //        }, {
+        //            featureType: 'manmade',
+        //            elementType: 'all',
+        //            stylers: {
+        //                visibility: 'off'
+        //            }
+        //        }, {
+        //            featureType: 'local',
+        //            elementType: 'all',
+        //            stylers: {
+        //                visibility: 'off'
+        //            }
+        //        }, {
+        //            featureType: 'arterial',
+        //            elementType: 'labels',
+        //            stylers: {
+        //                visibility: 'off'
+        //            }
+        //        }, {
+        //            featureType: 'boundary',
+        //            elementType: 'geometry.fill',
+        //            stylers: {
+        //                color: '#029fd4'
+        //            }
+        //        }, {
+        //            featureType: 'building',
+        //            elementType: 'all',
+        //            stylers: {
+        //                color: '#1a5787'
+        //            }
+        //        }, {
+        //            featureType: 'label',
+        //            elementType: 'all',
+        //            stylers: {
+        //                visibility: 'off'
+        //            }
+        //        }, {
+        //            featureType: 'poi',
+        //            elementType: 'labels.text.fill',
+        //            stylers: {
+        //                color: '#ffffff'
+        //            }
+        //        }, {
+        //            featureType: 'poi',
+        //            elementType: 'labels.text.stroke',
+        //            stylers: {
+        //                color: '#1e1c1c'
+        //            }
+        //        }]
+        //    });
+        var mapStyle = {
+            features: ["road", "building", "water", "land"],//隐藏地图上的poi
+            style: "dark"  //设置地图风格为高端黑
+        };
+        bmap.setMapStyle(mapStyle);
+        bmap.centerAndZoom(new BMap.Point(110, 34), 5); // 初始化地图,设置中心点坐标和地图级别
+        bmap.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+
+        // 第一步创建mapv示例
+        var mapv = new Mapv({
+            map: bmap  // 百度地图的map实例
+        });
+
+        var data = []; // 取城市的点来做示例展示的点数据
+
+        data = data.concat(getCityCenter(cityData.municipalities));
+        data = data.concat(getCityCenter(cityData.provinces));
+        data = data.concat(getCityCenter(cityData.other));
+
+        for (var i = 0; i < cityData.provinces.length; i++) {
+            var citys = cityData.provinces[i].cities;
+            data = data.concat(getCityCenter(citys));
+        }
+
+        console.log(data.length);
+
+        function getCityCenter(citys) {
+            var data = [];
+            for (var i = 0; i < citys.length; i++) {
+                var city = citys[i];
+                var center = city.g.split('|')[0];
+                center = center.split(',');
+                for (var j = 0; j < 1000; j++) {
+                    data.push({
+                        lng: parseFloat(center[0]) + Math.random() * 10 - 5,
+                        lat: parseFloat(center[1]) + Math.random() * 10 - 5,
+                        count: Math.random() * 10
+                    });
+                }
+            }
+            return data;
+        }
+
+       var layer = new Mapv.Layer({
+           mapv: mapv, // 对应的mapv实例
+           zIndex: 1, // 图层层级
+           context: 'webgl',
+           data: data, // 数据
+           drawType: 'simple', // 展示形式
+           drawOptions: { // 绘制参数
+//                fillStyle: 'rgba(55, 55, 250, 0.7)', // 填充颜色
+               fillStyle: 'rgba(205, 205, 205, 0.7)', // 填充颜色
+               size: 0.9 // 半径
+           }
+       });
+
+        //添加覆盖物方式
+//        var points = []; // 取城市的点来做示例展示的点数据
+//
+//        points = points.concat(getCityCenter(cityData.municipalities));
+//        points = points.concat(getCityCenter(cityData.provinces));
+//        points = points.concat(getCityCenter(cityData.other));
+//
+//        for (var i = 0; i < cityData.provinces.length; i++) {
+//            var citys = cityData.provinces[i].cities;
+//            points = points.concat(getCityCenter_point(citys));
+//        }
+//
+//        console.log(data.length);
+//
+//        function getCityCenter_point(citys) {
+//            var data = [];
+//            for (var i = 0; i < citys.length; i++) {
+//                var city = citys[i];
+//                var center = city.g.split('|')[0];
+//                center = center.split(',');
+//                for (var j = 0; j < 1000; j++) {
+//                    data.push(new BMap.Point(parseFloat(center[1]) + Math.random() * 10 - 5, parseFloat(center[0]) + Math.random() * 10 - 5));
+//                }
+//            }
+//            return data;
+//        }
+//        var options = {
+//            size: 1,
+//            shape: BMAP_POINT_SHAPE_CIRCLE,
+//            color: '#EEE'
+//        };
+//        var pointCollection = new BMap.PointCollection(points, options);  // 初始化PointCollection
+//        pointCollection.addEventListener('click', function (e) {
+////            alert('单击点的坐标为：' + e.point.lng + ',' + e.point.lat);  // 监听点击事件
+//            var opts = {
+//                width : 200,     // 信息窗口宽度
+//                height: 100,     // 信息窗口高度
+//                title : "海底捞王府井店" , // 信息窗口标题
+//                enableMessage:true,//设置允许信息窗发送短息
+//                message:"亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+//            };
+//            var infoWindow = new BMap.InfoWindow("地址：北京市东城区王府井大街88号乐天银泰百货八层", opts);  // 创建信息窗口对象
+//            bmap.openInfoWindow(infoWindow, new BMap.Point(e.point.lng, e.point.lat)); //开启信息窗口
+//
+//        });
+//        bmap.addOverlay(pointCollection);  // 添加Overlay
+    };
+    initMap();
+</script>
+</body>
+</html>

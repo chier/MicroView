@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<anychart>
+	<templates path="templates.xml" />
+	<charts>
+		<chart name="Pie_1" template="Templates">
+			<data>
+				<series name="Series 1" type="Line" data_source="CSV">
+					<csv_data_mapping data_set="datatest4test">
+						<field column="0" name="name" />
+						<field column="1" name="y" />
+					</csv_data_mapping>
+				</series>
+				<series name="Series 2" type="Line" data_source="CSV" opacity="0.5">
+					<csv_data_mapping data_set="datatest4test">
+						<field column="0" name="name" />
+						<field column="2" name="y" />
+					</csv_data_mapping>
+				</series>
+				<series name="Series 3" type="Line" data_source="CSV" opacity="0.5">
+					<csv_data_mapping data_set="datatest4test">
+						<field column="0" name="name" />
+						<field column="3" name="y" />
+					</csv_data_mapping>
+				</series>
+				<series name="Series 4" type="Line" data_source="CSV" opacity="0.5">
+					<csv_data_mapping data_set="datatest4test">
+						<field column="0" name="name" />
+						<field column="4" name="y" />
+					</csv_data_mapping>
+				</series>
+				<series></series>				
+			</data>
+		</chart>
+		<chart></chart>
+	</charts>
+	<data_sets>
+		<csv_data_set name="datatest4test">
+			P1,174,5854,3242
+			P2,197,4171,3171
+			P3,155,1375,700
+			P4,15,1875,1287
+			P5,66,2246,1856
+			P6,85,2696,1126
+			我,37,1287,987
+			P8,10,2140,1610
+			P9,44,1603,903
+		</csv_data_set>
+		<csv_data_set></csv_data_set>
+	</data_sets>
+</anychart>

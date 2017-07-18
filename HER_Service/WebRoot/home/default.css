@@ -1,0 +1,350 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace esri "http://www.esri.com/2008/ags";
+@namespace controls "com.ibs.controls.*";
+@namespace dockBarClasses "com.ibs.containers.dockBarClasses.*";
+@namespace tab "flexlib.controls.tabBarClasses.*";
+
+esri|Navigation
+{
+	skinClass: ClassReference("com.skins.NavigationSkin");
+}
+esri|ScaleBar
+{
+	skinClass: ClassReference("com.skins.ScaleBarSkin");
+}
+esri|ContentNavigator
+{
+	skinClass:ClassReference("com.skins.ContentNavigatorSkin");
+	headerBackgroundColor: #D12610;
+	headerColor: #FFFFFF;
+	/*	headerBackgroundAlpha: 1.0;*/
+}
+esri|InfoWindow
+{
+/*	backgroundColor: #A5000E;
+	borderThickness: 2;
+	borderColor: #C20011;*/
+	lowerLeftRadius:0;
+	lowerRightRadius:0;
+	upperLeftRadius:0;
+	upperRightRadius:0;
+	shadowDistance: 10;
+	shadowAlpha: 0.5;
+}
+esri|InfoWindowLabel
+{
+	fontWeight: bold;
+	fontSize: 12;
+	color: #FFFFFF;
+}
+s|Scroller
+{
+	skinClass:ClassReference("com.skins.SparkScroller")
+}
+mx|VScrollBar
+{
+	downArrowUpSkin:ClassReference("com.skins.MxScrollBarDownButtonSkin");
+	downArrowOverSkin: ClassReference("com.skins.MxScrollBarDownButtonSkin");
+	downArrowDownSkin: ClassReference("com.skins.MxScrollBarDownButtonSkin");
+	upArrowUpSkin: ClassReference("com.skins.MxScrollBarUpButtonSkin");
+	upArrowOverSkin: ClassReference("com.skins.MxScrollBarUpButtonSkin");
+	upArrowDownSkin: ClassReference("com.skins.MxScrollBarUpButtonSkin");
+	thumbDownSkin: ClassReference("com.skins.MxScrollBarThumbSkin");
+	thumbUpSkin: ClassReference("com.skins.MxScrollBarThumbSkin");
+	thumbOverSkin: ClassReference("com.skins.MxScrollBarThumbSkin");
+	trackSkin: ClassReference("com.skins.MxScrollBarTrackSkin");
+}
+mx|HScrollBar
+{
+	downArrowUpSkin:ClassReference("com.skins.MxScrollBarDownButtonSkin");
+	downArrowOverSkin: ClassReference("com.skins.MxScrollBarDownButtonSkin");
+	downArrowDownSkin: ClassReference("com.skins.MxScrollBarDownButtonSkin");
+	upArrowUpSkin: ClassReference("com.skins.MxScrollBarUpButtonSkin");
+	upArrowOverSkin: ClassReference("com.skins.MxScrollBarUpButtonSkin");
+	upArrowDownSkin: ClassReference("com.skins.MxScrollBarUpButtonSkin");
+	thumbDownSkin: ClassReference("com.skins.MxScrollBarThumbSkin");
+	thumbUpSkin: ClassReference("com.skins.MxScrollBarThumbSkin");
+	thumbOverSkin: ClassReference("com.skins.MxScrollBarThumbSkin");
+	trackSkin: ClassReference("com.skins.MxScrollBarTrackSkin");
+}
+mx|Menu
+{
+	dropShadowVisible:false;
+	rollOverColor:#F5F5F5;
+	selectionColor:#E8E8E8;
+}
+mx|Tree
+{
+	rollOverColor:#F5F5F5;
+	selectionColor:#E8E8E8;
+}
+s|SkinnableComponent 
+{  
+	focusSkin: ClassReference("com.skins.FocusSkin"); /* Spark controls only */
+}
+s|SkinnableTextBase
+{
+/*	focusedTextSelectionColor:#338FFF;*/
+	focusedTextSelectionColor:#9AC7FF;
+}
+s|List
+{
+	rollOverColor:#F5F5F5;
+	selectionColor:#F5F5F5;
+	
+}
+.BannerTitle
+{
+	color: #18507F;
+	textAlign: justify;
+	textJustify:distribute;
+	fontWeight: normal;
+	fontWeight:bold;
+	fontFamily: "黑体";
+	fontSize: 26;
+}
+.BannerSubtitle
+{
+	color: #18507F;
+	fontWeight: normal;
+	fontFamily: "黑体";
+	fontSize: 16;
+}
+.AlertTitle
+{
+	color: #FFFFFF;
+	fontWeight: normal;
+	fontFamily: "黑体";
+	fontSize: 13;
+}
+mx|ToolTip{ 
+	color:  #333333; 
+	background-color: #FFFFFF; 
+	background-alpha: 1; 
+	cornerRadius: 0; 
+/*	borderColor: #666666;
+	borderStyle: none;
+	borderAlpha: 1;
+	borderSkin: ClassReference("com.skins.MetroToolTip"); */
+	borderVisible: true;
+}
+/*mx|MenuBar{
+	rollOverColor:"0x31C2EB";
+	selectionColor:"0x31C2EB";
+	fontFamily:"黑体";
+	fontSize:13;
+	itemDownSkin:ClassReference("com.skins.MenuItemSkin");
+	itemOverSkin:ClassReference("com.skins.MenuItemSkin");
+	itemUpSkin:ClassReference("com.skins.MenuItemSkin");
+}*/
+controls|IBSDockBar
+{
+	horizontalGap: 0;
+	verticalGap: 1;
+	backgroundColor:#D9D9D9;
+}
+
+dockBarClasses|IBSDockTab
+{
+	color: #FFFFFF;
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+	disabledColor: #AAB3B3;
+	left: 4;
+	right: 4;
+	top: 0;
+	bottom: 0;
+	fontSize: 21;
+	textAlign: center;
+	skin: ClassReference("com.ibs.skins.IBSDockTabSkin");
+}
+.dockablePanel
+{
+	borderSkin: ClassReference("com.ibs.skins.IBSDockablePanelSkin");
+	borderThicknessLeft: 6;
+	borderThicknessRight: 6;
+	borderThicknessTop: 4;
+	borderThicknessBottom: 6;
+	cornerRadius: 0;
+	headerHeight: 0;
+	titleStyleName: dockablePanelTitle;
+/*	dockButtonPositionX: 5;
+	dockButtonPositionY: 4;
+	dockButtonStyleName: linkButton;*/
+	resizerAlpha: 0.7;
+	resizerColor: #FF0000;
+	resizerThickness: 4;
+}
+.dockablePanelTitle
+{
+	color: #FFFFFF;
+	fontWeight: "黑体";
+	fontSize: 15;
+	verticalCenter:0;
+}
+/*.linkButton
+{
+	rollOverColor:#FFFAF9;
+	selectionColor:#FEE5E0;
+}*/
+
+/*mx|Alert{
+borderSkin:ClassReference("com.skins.AlertSkin");
+titleStyleName:AlertTitle;
+}*/
+
+.sliderStyle
+{
+	/* trackSkin: ClassReference("TimeSlider.SliderTrackSkin"); */
+	thumbSkin: ClassReference("com.skins.SliderThumbSkin");
+	/* trackHighlightSkin: ClassReference("TimeSlider.SliderTrackHighlightSkin"); */
+}
+.layerTimeSliderStyle
+{
+	trackSkin: ClassReference("com.skins.LayerTimeSliderTrackSkin"); 
+	thumbSkin: ClassReference("com.skins.LayerTimeSliderThumbSkin");
+	trackHighlightSkin: ClassReference("com.skins.LayerTimeSliderTrackHighlightSkin");
+}
+
+
+.H_AccordionHeadStyles {
+	skin: ClassReference("com.skins.AccordionHeaderSkin");
+	letterSpacing: 0;
+	color: #000000;
+	textAlign: left;
+	fontFamily: "宋体";
+	fontSize: 14;
+}
+.H_AccordionStyles {
+    headerStyleName: H_AccordionHeadStyles;
+	borderVisible: false;
+	backgroundAlpha: 0;
+	contentBackgroundAlpha: 0;
+	headerHeight: 30;
+	textSelectedColor: #1794BE;
+}
+.linkButtonWindowShade {
+	headerClass:ClassReference('mx.controls.LinkButton');
+	header-style-name: linkButtonStyle;
+	drop-shadow-enabled:true;
+	corner-radius:5;
+	border-style:solid;
+	borderColor:#eeeeee;
+	background-color:#efefef;
+	background-alpha:0;
+}         
+.linkButtonStyle {
+	corner-radius:6;	
+	fill-alphas:1,1;
+	padding-left:10;
+	textAlign:left;
+	color:#E06A00;
+}
+s|Label,s|TextInput
+{
+	/*	fontFamily: "Segoe UI";*/
+	fontFamily: "黑体","Arial";
+}
+
+s|Label.dataGridHeaderStyle
+{
+	/*	fontFamily: "Segoe UI";*/
+	fontFamily: "黑体","Arial";
+	fontWeight: normal;
+	textAlign: center;
+	fontSize: 14;
+	color: #404040;
+}
+
+s|Label.dataGridCellStyle
+{
+	/*	fontFamily: "Segoe UI";*/
+	fontFamily: "宋体";
+	fontSize: 13;
+	color: #404040;
+	paddingLeft: 10;
+	paddingRight: 10;
+	paddingTop: 4;
+}
+
+s|Label.dataGridCellRedStyle
+{
+	/*	fontFamily: "Segoe UI";*/
+	fontFamily: "宋体";
+	fontSize: 13;
+	color: #FF6666;
+	paddingLeft: 10;
+	paddingRight: 10;
+	paddingTop: 4;
+}
+
+s|Label.dataGridCellSelectedStyle
+{
+	/*	fontFamily: "Segoe UI";*/
+	fontFamily: "宋体";
+	fontSize: 13;
+	color: #000000;
+	paddingLeft: 10;
+	paddingRight: 10;
+	paddingTop: 4;
+}
+
+.superTabNavigatorLeftButtonStyle
+{
+	icon: Embed(source="assets/images/left_nav.png");
+}
+.superTabNavigatorRightButtonStyle
+{
+	icon: Embed(source="assets/images/right_nav.png");
+}
+
+tab|SuperTab{  
+	/*	upSkin:ClassReference('ui.skins.ufmNavigatorBg2skin');       
+	overSkin:ClassReference('ui.skins.ufmNavigatorBg2skin');       
+	downSkin:ClassReference('ui.skins.ufmNavigatorBg2skin');       
+	disabledSkin:ClassReference('ui.skins.ufmNavigatorBg2skin');       
+	selectedUpSkin:ClassReference('ui.skins.ufmNavigatorBgskin');       
+	selectedOverSkin:ClassReference('ui.skins.ufmNavigatorBgskin');      
+	selectedDownSkin:ClassReference('ui.skins.ufmNavigatorBgskin');       
+	selectedDisabledSkin:ClassReference('ui.skins.ufmNavigatorBgskin');  */
+	tabCloseButtonStyleName:"SuperTabButtonStyle";    
+}  
+.SuperTabButtonStyle{  
+	icon: Embed(source="assets/images/close10.png");
+}
+.downloadStyle{
+	upSkin: Embed(source="assets/images/download_silver_32.png");
+	overSkin: Embed(source="assets/images/download_black_32.png");
+	downSkin: Embed(source="assets/images/download_silver_32.png");
+}
+.uploadStyle{
+	upSkin: Embed(source="assets/images/upload_l_32.png");
+	overSkin: Embed(source="assets/images/upload_32.png");
+	downSkin: Embed(source="assets/images/upload_l_32.png");
+}
+.datagridFilterStyle{
+	upSkin: Embed(source="assets/images/filter_16.png");
+	overSkin: Embed(source="assets/images/filter_blue_16.png");
+	downSkin: Embed(source="assets/images/filter_16.png");
+}
+.treeStyle {
+	defaultLeafIcon: Embed(source='assets/images/node.png');
+	folderClosedIcon: Embed(source='assets/images/node.png');
+	folderOpenIcon: Embed(source='assets/images/node.png');
+	disclosureOpenIcon:Embed(source='assets/images/tree_closeNode.png');
+	disclosureClosedIcon:Embed(source='assets/images/tree_openNode.png');
+	rollOverColor:#F5F5F5;
+	selectionColor:#F5F5F5;
+}
+.fieldFilterTreeStyle {
+	defaultLeafIcon: ClassReference(null);
+	folderClosedIcon: ClassReference(null);
+	folderOpenIcon: ClassReference(null);
+	disclosureOpenIcon:Embed(source='assets/images/tree_closeNode.png');
+	disclosureClosedIcon:Embed(source='assets/images/tree_openNode.png');
+	rollOverColor:#F5F5F5;
+	selectionColor:#F5F5F5;
+}

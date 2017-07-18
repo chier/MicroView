@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fieldmaps>
+	<table name=""/>
+	<map from="policy_id" to="policy_id" type="String"></map>
+	<map from="zone" to="zone" type="String"></map>
+	<map from="addr" to="address" type="String"></map>
+	<map from="ceding_company" to="corp_branch" type="String"></map>
+	<map from="type_of_insurance" to="policy_type" type="String"></map>
+	<map from="insured" to="insured" type="String"></map>
+	<map from="premium" to="premium" type="Number"></map>
+	<map from="hazard_category" to="" type="String"></map>
+	<map from="year_built" to="year_built" type="Number"></map>
+	<map from="lon" to="lon" type="Number"></map>
+	<map from="lat" to="lat" type="Number"></map>
+	<map from="story" to="story" type="Number"></map>
+	<map from="treaty_deductible" to="" type="String"></map>
+	<map from="ded" to="deductible" type="Number"></map>
+</fieldmaps>

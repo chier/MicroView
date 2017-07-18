@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+	<template name="Template1">
+		<chart plot_type="CategorizedVertical">
+			<chart_settings>
+				<title>
+					<text>Simple Grid</text>
+				</title>
+				<axes>
+					<x_axis>
+						<major_tickmark enabled="false" />
+						<minor_tickmark enabled="false" />
+						<title enabled="false" />
+						<major_grid enabled="True" interlaced="False">
+							<line color="Black" />
+						</major_grid>
+						<line enabled="false" />
+					</x_axis>
+					<y_axis>
+						<line enabled="false" />
+						<major_tickmark enabled="false" />
+						<minor_tickmark enabled="false" />
+						<title enabled="false" />
+						<major_grid enabled="True" interlaced="False">
+							<line color="Black" />
+						</major_grid>
+						<minor_grid enabled="True">
+							<line color="Black" opacity="0.2" dashed="True" dash_length="5"
+								space_length="5" />
+						</minor_grid>
+					</y_axis>
+				</axes>
+			</chart_settings>
+		</chart>
+	</template>
+</templates>

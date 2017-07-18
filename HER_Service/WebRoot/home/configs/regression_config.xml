@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<chart_setting>
+		<title></title>
+		<subtitle></subtitle>
+		<type>line</type>
+		<xfield>
+			<name></name>
+			<label></label>
+		</xfield>
+		<yfield>
+			<name></name>
+			<label></label>
+		</yfield>
+		<ylines>
+			<yline>
+				<name></name>
+				<value></value>
+			</yline>
+			<yline>
+				<name></name>
+				<value></value>
+			</yline>
+		</ylines>
+	</chart_setting>
+</configuration>

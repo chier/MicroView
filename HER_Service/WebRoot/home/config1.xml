@@ -1,0 +1,263 @@
+<?xml version="1.0" ?>
+<!-- //////////////////////////////////////////////////////////////////////////////// 
+	// // // // //////////////////////////////////////////////////////////////////////////////// -->
+<configuration>
+	<title></title>
+	<largerscan>true</largerscan>
+	<navagation>true</navagation>
+	<mapswitcher top="10" left="35">true</mapswitcher>
+	<observelayer top="10" right="10" bottom="228">true</observelayer>
+	<timercontrol bottom="10" right="10">true</timercontrol>
+	<identifycontrol bottom="55" left="10" right="20">false</identifycontrol>
+	<zoomercontrol bottom="275" left="10">false</zoomercontrol>
+	<scalebar>true</scalebar>
+	<bing key="" />
+	<map initialextent="9965000 1760973 14206000 7288899"
+		spatialReference="3857">
+		<lods>
+			<lod resolution="156543.033928" scale="591657527.591555" />
+			<lod resolution="78271.5169639999" scale="295828763.795777" />
+			<lod resolution="39135.7584820001" scale="147914381.897889" />
+			<lod resolution="19567.8792409999" scale="73957190.948944" />
+			<lod resolution="9783.93962049996" scale="36978595.474472" />
+			<lod resolution="4891.9698102499" scale="18489297.737236" />
+			<lod resolution="2445.98490512499" scale="9244648.868618" />
+			<lod resolution="1222.99245256249" scale="4622324.434309" />
+			<lod resolution="611.49622628138" scale="2311162.217155" />
+			<lod resolution="305.748113140558" scale="1155581.108577" />
+			<lod resolution="152.874056570411" scale="577790.554289" />
+			<lod resolution="76.4370282850732" scale="288895.277144" />
+			<lod resolution="38.2185141425366" scale="144447.638572" />
+			<lod resolution="19.1092570712683" scale="72223.819286" />
+			<lod resolution="9.55462853563415" scale="36111.909643" />
+			<lod resolution="4.77731426794937" scale="18055.954822" />
+			<lod resolution="2.38865713397468" scale="9027.977411" />
+			<lod resolution="1.19432856685505" scale="4513.988705" />
+			<lod resolution="0.597164283559817" scale="2256.994353" />
+			<lod resolution="0.298582141647617" scale="1128.497176" />
+		</lods>
+	</map>
+	<webroot>http://127.0.0.1:8080/HER_Service</webroot>
+	<webservices>http://127.0.0.1:8080/HER_Service/servlet/</webservices>
+	<renderers>
+		<tfrenderer>
+			<temporalRenderer>
+				<trackRenderer>
+					<simpleLineSymbol color="0x85AB00" />
+				</trackRenderer>
+				<latestObservationRenderer>
+					<classBreaksRenderer field="wind_speed">
+						<classBreakInfo minvalue="0" maxvalue="10.8"
+							description="">
+							<symbol type="SimpleMarker" topfield="recordtime"
+								bottomfield="intensity">
+								<color>0xFFFFFF</color>
+								<alpha>0.3</alpha>
+								<size>10</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="10.8" maxvalue="17.1"
+							description="热带低压(TD)">
+							<symbol type="SimpleMarker" topfield="recordtime"
+								bottomfield="intensity">
+								<color>0xFFFFFF</color>
+								<alpha>0.3</alpha>
+								<size>15</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="17.1" maxvalue="24.4"
+							description="热带风暴(TS)">
+							<symbol type="SimpleMarker" topfield="recordtime"
+								bottomfield="intensity">
+								<color>0xFFFFFF</color>
+								<alpha>0.3</alpha>
+								<size>20</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="24.4" maxvalue="32.6"
+							description="强热带风暴(STS)">
+							<symbol type="SimpleMarker" topfield="recordtime"
+								bottomfield="intensity">
+								<color>0xFFFFFF</color>
+								<alpha>0.3</alpha>
+								<size>25</size>
+							</symbol>
+						</classBreakInfo>
+
+						<classBreakInfo minvalue="32.6" maxvalue="41.4"
+							description="台风（TY）">
+							<symbol type="SimpleMarker" topfield="recordtime"
+								bottomfield="intensity">
+								<color>0xFFFFFF</color>
+								<alpha>0.3</alpha>
+								<size>30</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="41.4" maxvalue="50.9"
+							description="强台风（STY）">
+							<symbol type="SimpleMarker" topfield="recordtime"
+								bottomfield="intensity">
+								<color>0xFFFFFF</color>
+								<alpha>0.3</alpha>
+								<size>40</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="50.9" maxvalue="100"
+							description="超强台风（Super TY）">
+							<symbol type="SimpleMarker" topfield="recordtime"
+								bottomfield="intensity">
+								<color>0xFFFFFF</color>
+								<alpha>0.3</alpha>
+								<size>50</size>
+							</symbol>
+						</classBreakInfo>
+
+					</classBreaksRenderer>
+				</latestObservationRenderer>
+				<observationRenderer>
+					<classBreaksRenderer field="wind_speed">
+						<classBreakInfo minvalue="50.9" maxvalue="100"
+							description="超强台风（Super TY）">
+							<symbol type="SimpleMarker" topfield="time" bottomfield="wind">
+								<color>0xFD0026</color>
+								<alpha>1</alpha>
+								<size>8</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="41.4" maxvalue="50.9"
+							description="强台风（STY）">
+							<symbol type="SimpleMarker" topfield="time" bottomfield="wind">
+								<color>0xFD5C1C</color>
+								<alpha>0.7</alpha>
+								<size>8</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="32.6" maxvalue="41.4"
+							description="台风（TY）">
+							<symbol type="SimpleMarker" topfield="time" bottomfield="wind">
+								<color>0xFD8B00</color>
+								<alpha>1</alpha>
+								<size>8</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="24.4" maxvalue="32.6"
+							description="强热带风暴(STS)">
+							<symbol type="SimpleMarker" topfield="time" bottomfield="wind">
+								<color>0xFDB700</color>
+								<alpha>1</alpha>
+								<size>8</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="17.1" maxvalue="24.4"
+							description="热带风暴(TS)">
+							<symbol type="SimpleMarker" topfield="time" bottomfield="wind">
+								<color>0xF4D000</color>
+								<alpha>1</alpha>
+								<size>8</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="10.8" maxvalue="17.1"
+							description="热带低压(TD)">
+							<symbol type="SimpleMarker" topfield="time" bottomfield="wind">
+								<color>0xF6F200</color>
+								<alpha>1</alpha>
+								<size>8</size>
+							</symbol>
+						</classBreakInfo>
+						<classBreakInfo minvalue="0" maxvalue="10.8"
+							description="">
+							<symbol type="SimpleMarker" topfield="time" bottomfield="wind">
+								<color>0xADDF00</color>
+								<alpha>1</alpha>
+								<size>8</size>
+							</symbol>
+						</classBreakInfo>
+					</classBreaksRenderer>
+				</observationRenderer>
+			</temporalRenderer>
+		</tfrenderer>
+		<dzrenderer>
+			<render type="Class" geomtype="Marker" field="eq_mag">
+				<infos>
+					<info value="0~2" maxvalue="2" minvalue="0" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>1</size>
+						</symbol>
+					</info>
+					<info value="2~4" maxvalue="4" minvalue="2" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>3</size>
+						</symbol>
+					</info>
+					<info value="4~5" maxvalue="5" minvalue="4" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>5</size>
+						</symbol>
+					</info>
+					<info value="5~6" maxvalue="6" minvalue="5" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>7</size>
+						</symbol>
+					</info>
+					<info value="6~7" maxvalue="7" minvalue="6" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>9</size>
+						</symbol>
+					</info>
+					<info value="7~7.5" maxvalue="7.5" minvalue="7" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>11</size>
+						</symbol>
+					</info>
+					<info value="7.5~8" maxvalue="8" minvalue="7.5" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>14</size>
+						</symbol>
+					</info>
+					<info value="8~8.5" maxvalue="8.5" minvalue="8" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>18</size>
+						</symbol>
+					</info>
+					<info value="8.5~9" maxvalue="9" minvalue="8.5" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>22</size>
+						</symbol>
+					</info>
+					<info value="9~9.5" maxvalue="9.5" minvalue="9" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>26</size>
+						</symbol>
+					</info>
+					<info value="9.5~" maxvalue="9999" minvalue="9.5" desc="simple">
+						<symbol type="Marker">
+							<color>0xFF0000</color>
+							<alpha>1</alpha>
+							<size>30</size>
+						</symbol>
+					</info>
+				</infos>
+			</render>
+		</dzrenderer>
+	</renderers>
+</configuration>
